@@ -34,12 +34,13 @@ namespace RoyalCommonalities
 
         private void InitializePrefabs()
         {
+            AdvancedCraftingStation.CreateAndRegister();
             CraftTreeHandler.AddFabricatorMenus();
             ChromaticIngot.Register();
             EnhancedWiringKit.Register();
             LaminatedGlass.Register();
             ModularHullPiece.Register();
-            AdvancedCraftingStation.CreateAndRegister();
+            
         }
     }
 }
