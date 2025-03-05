@@ -14,6 +14,7 @@ using Nautilus.Handlers;
 using Nautilus.Utility;
 using Nautilus.Extensions;
 using UnityEngine;
+using RoyalCommonalities.Buildables.Crafting;
 
 namespace RoyalCommonalities.Items.Materials
 {
@@ -41,7 +42,7 @@ namespace RoyalCommonalities.Items.Materials
                 );
 
             ModularHullPiecePrefab.SetRecipe(recipe)
-                .WithFabricatorType(CraftTree.Type.Fabricator)
+                .WithFabricatorType(AdvancedCraftingStation.TreeType)
                 .WithStepsToFabricatorTab(CraftTreeHandler.rootRCVehicleIngredientsTab);
 
             //Unlocks at start ^-^

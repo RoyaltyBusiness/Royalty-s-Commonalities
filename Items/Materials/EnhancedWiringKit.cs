@@ -14,6 +14,7 @@ using Nautilus.Handlers;
 using Nautilus.Utility;
 using Nautilus.Extensions;
 using UnityEngine;
+using RoyalCommonalities.Buildables.Crafting;
 
 namespace RoyalCommonalities.Items.Materials
 {
@@ -39,7 +40,7 @@ namespace RoyalCommonalities.Items.Materials
                 ){ craftAmount = 2 };
 
             enhancedwiringkitPrefab.SetRecipe(recipe)
-                .WithFabricatorType(CraftTree.Type.Fabricator)
+                .WithFabricatorType(AdvancedCraftingStation.TreeType)
                 .WithStepsToFabricatorTab(CraftTreeHandler.rootRCPrecursorTab);
 
             //Unlocks at start ^-^

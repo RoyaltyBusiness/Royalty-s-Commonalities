@@ -27,7 +27,10 @@ namespace RoyalCommonalities
 
             //Adds tab ^-^
             Nautilus.Handlers.CraftTreeHandler.AddTabNode(AdvancedCraftingStation.TreeType, rootRCPrecursorTab[0], "Precursor Materials", RCPR_Icon);
-            Nautilus.Handlers.CraftTreeHandler.AddTabNode(CraftTree.Type.Fabricator, rootRCVehicleIngredientsTab[0], "Vehicle Materials", RCVI_Icon);
+            Nautilus.Handlers.CraftTreeHandler.AddTabNode(AdvancedCraftingStation.TreeType, rootRCVehicleIngredientsTab[0], "Vehicle Materials", RCVI_Icon);
+
+            //this is how you do it for fabricator:
+            //Nautilus.Handlers.CraftTreeHandler.AddTabNode(CraftTree.Type.Fabricator, rootRCVehicleIngredientsTab[0], "Vehicle Materials", RCVI_Icon);
 
             //just in case this how you do with in-game icon:
             //Nautilus.Handlers.CraftTreeHandler.AddTabNode(CraftTree.Type.Fabricator, rootRCPrecursorTab[0], "Precursor Materials", SpriteManager.Get(TechType.PrecursorIonCrystal));

@@ -24,7 +24,7 @@ namespace RoyalCommonalities.Buildables.Crafting
 
             if (GetBuilderIndex(TechType.Fabricator, out var group, out var category, out _))
             {
-                var scanGadget = prefab.SetPdaGroupCategoryAfter(group, category, TechType.Fabricator);
+                var scanGadget = prefab.SetPdaGroupCategoryAfter(group, category, TechType.Workbench);
                 scanGadget.RequiredForUnlock = TechType.Constructor;
             }
 
