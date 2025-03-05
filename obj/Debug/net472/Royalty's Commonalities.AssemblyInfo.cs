@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RoyalCommonalities")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("0.1.8.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.8+a0717ba9e87437c9e017e85d8288695097f78a20")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.8+31c1f24f8a345c3849a768897e2e9e5d6da7e466")]
 [assembly: System.Reflection.AssemblyProductAttribute("RoyalCommonalities")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RoyalCommonalities")]
 [assembly: System.Reflection.AssemblyVersionAttribute("0.1.8.0")]
