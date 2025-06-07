@@ -36,7 +36,7 @@ namespace RoyalCommonalities.Items.Materials
             var recipe = new RecipeData(
                 new Ingredient(TechType.Glass, 2),
                 new Ingredient(TechType.Gold, 2),
-                new Ingredient(TechType.PrecursorIonCrystal, 1)
+                new Ingredient(Ionite.Info.TechType, 1)
                 );
             laminatedglassPrefab.SetRecipe(recipe)
 

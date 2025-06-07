@@ -18,39 +18,38 @@ using RoyalCommonalities.Buildables.Crafting;
 
 namespace RoyalCommonalities.Items.Materials
 {
-    public class ModularHullPiece
+    public class HeavyModularHullPiece
     {
         //TechType
         public static PrefabInfo Info { get; private set; }
 
         public static TechType Register()
         {
-            Info = PrefabInfo.WithTechType("modularhullpeace", "Modular Hull Piece", "Modular hull peace, made for the pourpose of building large vehicle hulls.").WithIcon(SpriteManager.Get(TechType.CyclopsHullBlueprint));
-            var ModularHullPiecePrefab = new CustomPrefab(Info);
+            Info = PrefabInfo.WithTechType("heavymodularhullpeace", "Heavy Modular Hull Piece", "Modular hull peace, made for the pourpose of building large armored vehicle hulls.").WithIcon(SpriteManager.Get(TechType.CyclopsHullBlueprint));
+            var HeavyModularHullPiecePrefab = new CustomPrefab(Info);
 
 
 
             // The model of our coal will use the same one as Nickel's. (edited to Titanium)
-            var ModularHullPieceObj = new CloneTemplate(Info, TechType.CyclopsHullFragment);
-            ModularHullPiecePrefab.SetGameObject(ModularHullPieceObj);
+            var HeavyModularHullPieceObj = new CloneTemplate(Info, TechType.CyclopsHullFragment);
+            HeavyModularHullPiecePrefab.SetGameObject(HeavyModularHullPieceObj);
 
             var recipe = new RecipeData(
-                new Ingredient(TechType.TitaniumIngot, 2),
-                new Ingredient(TechType.Titanium, 3),
-                new Ingredient(TechType.Lithium, 2),
-                new Ingredient(TechType.CopperWire, 2)
+                new Ingredient(TechType.TitaniumIngot, 4),
+                new Ingredient(TechType.Lead, 5),
+                new Ingredient(TechType.Lithium, 2)
                 );
 
-            ModularHullPiecePrefab.SetRecipe(recipe)
+            HeavyModularHullPiecePrefab.SetRecipe(recipe)
                 .WithFabricatorType(AdvancedCraftingStation.TreeType)
                 .WithStepsToFabricatorTab(CraftTreeHandler.rootRCVehicleIngredientsTab);
 
             //Unlocks at start ^-^
             //You don't have to put this here i think but i do it here.
-            KnownTechHandler.UnlockOnStart(ModularHullPiece.Info.TechType);
+            KnownTechHandler.UnlockOnStart(HeavyModularHullPiece.Info.TechType);
 
             // register to the game
-            ModularHullPiecePrefab.Register();
+            HeavyModularHullPiecePrefab.Register();
             return Info.TechType;
         }
     }

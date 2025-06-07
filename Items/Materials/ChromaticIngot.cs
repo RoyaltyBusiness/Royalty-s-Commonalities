@@ -38,7 +38,7 @@ namespace RoyalCommonalities.Items.Materials
                 new Ingredient(TechType.TitaniumIngot),
                 new Ingredient(TechType.Copper, 2),
                 new Ingredient(TechType.Gold, 2),
-                new Ingredient(TechType.PrecursorIonCrystal, 2)
+                new Ingredient(Ionite.Info.TechType, 2)
                 );
 
             chromeingotPrefab.SetRecipe(recipe)
