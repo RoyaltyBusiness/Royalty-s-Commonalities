@@ -29,6 +29,7 @@ using JetBrains.Annotations;
 using static TechStringCache;
 using Story;
 
+//IMPORTANT! DON'T ADD "Drillable" TO THE NAMESPACE OR ELSE IT WILL MESS WITH THE CODE!!!
 namespace RoyalCommonalities.WorldObjects.Materials.Deposits.Precursor
 {
     class DrillableIonite

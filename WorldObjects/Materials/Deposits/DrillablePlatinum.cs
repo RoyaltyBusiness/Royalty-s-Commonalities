@@ -30,6 +30,7 @@ using static TechStringCache;
 using Story;
 using RoyalCommonalities.Items.Materials.Natural;
 
+//IMPORTANT! DON'T ADD "Drillable" TO THE NAMESPACE OR ELSE IT WILL MESS WITH THE CODE!!!
 namespace RoyalCommonalities.WorldObjects.Materials.Deposits
 {
     class DrillablePlatinum
