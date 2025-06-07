@@ -34,10 +34,11 @@ namespace RoyalCommonalities.Items.Materials
             enhancedwiringkitPrefab.SetGameObject(enhancedwiringkitObj);
 
             var recipe = new RecipeData(
-                new Ingredient(TechType.WiringKit, 2),
-                new Ingredient(TechType.Lithium, 2),
-                new Ingredient(TechType.PrecursorIonCrystal, 1)
-                ){ craftAmount = 2 };
+                new Ingredient(TechType.WiringKit, 1),
+                new Ingredient(TechType.Lithium, 1),
+                new Ingredient(Ionite.Info.TechType, 1)
+                ){ craftAmount = 1 };
+
 
             enhancedwiringkitPrefab.SetRecipe(recipe)
                 .WithFabricatorType(AdvancedCraftingStation.TreeType)
