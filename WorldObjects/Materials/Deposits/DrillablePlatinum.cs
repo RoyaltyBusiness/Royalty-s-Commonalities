@@ -55,9 +55,27 @@ namespace RoyalCommonalities.WorldObjects.Materials.Deposits
             DrillablePlatinumPrefab.SetSpawns(
                     new BiomeData
                     {
-                        biome = BiomeType.Mountains_Sand,
+                        biome = BiomeType.Dunes_Crater_Rock,
                         count = 1,
-                        probability = 0.087f
+                        probability = 0.1f
+                    },
+                    new BiomeData
+                    {
+                        biome = BiomeType.Dunes_Crater_Sand,
+                        count = 1,
+                        probability = 0.1f
+                    },
+                    new BiomeData
+                    {
+                        biome = BiomeType.InactiveLavaZone_Chamber_Floor,
+                        count = 1,
+                        probability = 0.09f
+                    },
+                    new BiomeData
+                    {
+                        biome = BiomeType.InactiveLavaZone_Corridor_Floor,
+                        count = 1,
+                        probability = 0.09f
                     }
                 );
             ;
@@ -106,8 +124,12 @@ namespace RoyalCommonalities.WorldObjects.Materials.Deposits
             var drillable = prefab.EnsureComponent<Drillable>();
             drillable.breakFX = fx;
             drillable.breakAllFX = fx;
-            //this u set what you want the drillable to give. for platinum is platinum. chance is how much it gives from 1 to ur number. in case of platinum it gives 1 100% of the time.
-            drillable.resources = new[] { new Drillable.ResourceType { chance = 1f, techType = Platinum.Info.TechType } };
+            //saddly you can't add more resources to one drillable. though there are points of experimentation with the chance but ehhhhh.
+            drillable.resources = new[] { 
+                new Drillable.ResourceType { chance = 1f, techType = Platinum.Info.TechType },
+                //new Drillable.ResourceType { chance = 0.5f, techType = TechType.Titanium }
+            };
+            //maximum resources that can spawn per piece
             drillable.maxResourcesToSpawn = 1;
             //here is why 0 in name might be important. donno if its acualy what happens i don't acualy code. this drillable code i got from Metious
             drillable.modelRoot = prefab.transform.GetChild(0).gameObject;

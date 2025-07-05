@@ -15,6 +15,10 @@ using Nautilus.Utility;
 using Nautilus.Extensions;
 using UnityEngine;
 using RoyalCommonalities.Buildables.Crafting;
+using System.Reflection;
+using Valve.VR;
+using UnityEngine.TextCore;
+using Nautilus.Utility.MaterialModifiers;
 
 namespace RoyalCommonalities.Items.Materials
 {
@@ -29,20 +33,20 @@ namespace RoyalCommonalities.Items.Materials
             var enhancedwiringkitPrefab = new CustomPrefab(Info);
 
 
-            // The model
-            var enhancedwiringkitObj = new CloneTemplate(Info, TechType.AdvancedWiringKit);
-            enhancedwiringkitPrefab.SetGameObject(enhancedwiringkitObj);
-
             var recipe = new RecipeData(
                 new Ingredient(TechType.WiringKit, 1),
                 new Ingredient(TechType.Lithium, 1),
                 new Ingredient(Ionite.Info.TechType, 1)
-                ){ craftAmount = 1 };
+                )
+            { craftAmount = 1 };
 
 
             enhancedwiringkitPrefab.SetRecipe(recipe)
                 .WithFabricatorType(AdvancedCraftingStation.TreeType)
                 .WithStepsToFabricatorTab(CraftTreeHandler.rootRCPrecursorTab);
+
+
+            enhancedwiringkitPrefab.SetGameObject(GetAssetBundlePrefab());
 
             //Unlocks at start ^-^
             //You don't have to put this here i think but i do it here.
@@ -50,6 +54,20 @@ namespace RoyalCommonalities.Items.Materials
 
             // register to the game
             enhancedwiringkitPrefab.Register();
+        }
+        private static GameObject GetAssetBundlePrefab()
+        {
+            GameObject EnhancedObj = Plugin.Bundle.LoadAsset<GameObject>("EnchancedWiringKitModel");
+
+            PrefabUtils.AddBasicComponents(EnhancedObj, Info.ClassID, Info.TechType, LargeWorldEntity.CellLevel.Medium);
+
+            MaterialUtils.ApplySNShaders(EnhancedObj);
+            EnhancedObj.AddComponent<WorldForces>();
+            EnhancedObj.AddComponent<Pickupable>();
+            EnhancedObj.AddComponent<SkyApplier>();
+            PrefabUtils.AddWorldForces(EnhancedObj, 1f, 1f, 1f, false);
+
+            return EnhancedObj;
         }
     }
 }
