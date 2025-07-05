@@ -15,6 +15,7 @@ using Nautilus.Utility;
 using Nautilus.Extensions;
 using UnityEngine;
 using RoyalCommonalities.Buildables.Crafting;
+using RoyalCommonalities.Items.Materials.Natural;
 
 namespace RoyalCommonalities.Items.Materials
 {
@@ -25,24 +26,28 @@ namespace RoyalCommonalities.Items.Materials
 
         public static TechType Register()
         {
-            Info = PrefabInfo.WithTechType("heavymodularhullpeace", "Heavy Modular Hull Piece", "Modular hull peace, made for the pourpose of building large armored vehicle hulls.").WithIcon(SpriteManager.Get(TechType.CyclopsHullBlueprint));
+            Info = PrefabInfo
+                // techtype | display name | description
+                .WithTechType("heavymodularhullpeace", "Heavy Modular Hull Piece", "Modular hull peace, made for the pourpose of building large armored vehicle hulls.")
+                //icon
+                .WithIcon(Plugin.Bundle.LoadAsset<Sprite>("HeavyModularHullPieceIco"))
+                //size in inventory
+                .WithSizeInInventory(new Vector2int(2, 2));
             var HeavyModularHullPiecePrefab = new CustomPrefab(Info);
-
-
-
-            // The model of our coal will use the same one as Nickel's. (edited to Titanium)
-            var HeavyModularHullPieceObj = new CloneTemplate(Info, TechType.CyclopsHullFragment);
-            HeavyModularHullPiecePrefab.SetGameObject(HeavyModularHullPieceObj);
 
             var recipe = new RecipeData(
                 new Ingredient(TechType.TitaniumIngot, 4),
                 new Ingredient(TechType.Lead, 5),
-                new Ingredient(TechType.Lithium, 2)
+                new Ingredient(Platinum.Info.TechType, 3)
                 );
 
             HeavyModularHullPiecePrefab.SetRecipe(recipe)
                 .WithFabricatorType(AdvancedCraftingStation.TreeType)
-                .WithStepsToFabricatorTab(CraftTreeHandler.rootRCVehicleIngredientsTab);
+                .WithStepsToFabricatorTab(CraftTreeHandler.rootRCVehicleIngredientsTab)
+                .WithCraftingTime(9f)
+                ;
+
+            HeavyModularHullPiecePrefab.SetGameObject(GetAssetBundlePrefab());
 
             //Unlocks at start ^-^
             //You don't have to put this here i think but i do it here.
@@ -51,6 +56,20 @@ namespace RoyalCommonalities.Items.Materials
             // register to the game
             HeavyModularHullPiecePrefab.Register();
             return Info.TechType;
+        }
+        private static GameObject GetAssetBundlePrefab()
+        {
+            GameObject HeavyModularObj = Plugin.Bundle.LoadAsset<GameObject>("HeavyModularHullPieceModel");
+
+            PrefabUtils.AddBasicComponents(HeavyModularObj, Info.ClassID, Info.TechType, LargeWorldEntity.CellLevel.Medium);
+
+            MaterialUtils.ApplySNShaders(HeavyModularObj);
+            HeavyModularObj.AddComponent<WorldForces>();
+            HeavyModularObj.AddComponent<Pickupable>();
+            HeavyModularObj.AddComponent<SkyApplier>();
+            PrefabUtils.AddWorldForces(HeavyModularObj, 1f, 1f, 1f, false);
+
+            return HeavyModularObj;
         }
     }
 }

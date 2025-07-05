@@ -1,4 +1,4 @@
-﻿using BepInEx;
+using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 using Nautilus.Utility;
@@ -6,8 +6,9 @@ using RoyalCommonalities;
 using RoyalCommonalities.Buildables.Crafting;
 using RoyalCommonalities.Items.Materials;
 using RoyalCommonalities.Items.Materials.Natural;
-using RoyalCommonalities.WorldObjects.Materials.Deposits.Precursor;
 using RoyalCommonalities.WorldObjects.Materials.Deposits;
+using RoyalCommonalities.WorldObjects.Materials.Deposits.Precursor;
+using RoyalCommonalities.WorldObjects.Materials.Outcrop;
 using System;
 using System.Reflection;
 using UnityEngine;
@@ -63,6 +64,7 @@ namespace RoyalCommonalities
 
             DrillableIonite.Register();
             DrillablePlatinum.Register();
+            PlatinumOutcrop.Register();
         }
     }
 }

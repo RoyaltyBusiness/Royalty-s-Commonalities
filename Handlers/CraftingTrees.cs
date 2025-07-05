@@ -22,12 +22,13 @@ namespace RoyalCommonalities
         internal static void AddFabricatorMenus()
         {
             //Gets icon for the tabs, you can't put it in the thing for some reason ;-;
-            var RCVI_Icon = Plugin.Bundle.LoadAsset<Sprite>("EnzymeIcon");
-            var RCPR_Icon = Plugin.Bundle.LoadAsset<Sprite>("PrecursorItemsIcon");
+            var RACS_Enzyme_Icon = Plugin.Bundle.LoadAsset<Sprite>("EnzymeIcon");
+            var RACS_Precursor_Icon = Plugin.Bundle.LoadAsset<Sprite>("PrecursorItemsIcon"); 
+            var RACS_Electronics_Icon = Plugin.Bundle.LoadAsset<Sprite>("Electronics");
 
             //Adds tab ^-^
-            Nautilus.Handlers.CraftTreeHandler.AddTabNode(AdvancedCraftingStation.TreeType, rootRCPrecursorTab[0], "Precursor Materials", RCPR_Icon);
-            Nautilus.Handlers.CraftTreeHandler.AddTabNode(AdvancedCraftingStation.TreeType, rootRCVehicleIngredientsTab[0], "Vehicle Materials", RCVI_Icon);
+            Nautilus.Handlers.CraftTreeHandler.AddTabNode(AdvancedCraftingStation.TreeType, rootRCPrecursorTab[0], "Precursor Materials", RACS_Precursor_Icon);
+            Nautilus.Handlers.CraftTreeHandler.AddTabNode(AdvancedCraftingStation.TreeType, rootRCVehicleIngredientsTab[0], "Vehicle Materials", RACS_Electronics_Icon);
 
             //this is how you do it for fabricator:
             //Nautilus.Handlers.CraftTreeHandler.AddTabNode(CraftTree.Type.Fabricator, rootRCVehicleIngredientsTab[0], "Vehicle Materials", RCVI_Icon);

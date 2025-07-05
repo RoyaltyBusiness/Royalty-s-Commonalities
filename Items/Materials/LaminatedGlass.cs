@@ -15,6 +15,7 @@ using Nautilus.Utility;
 using Nautilus.Extensions;
 using UnityEngine;
 using RoyalCommonalities.Buildables.Crafting;
+using static GameObjectPoolPrefabMap;
 
 
 namespace RoyalCommonalities.Items.Materials
@@ -29,9 +30,7 @@ namespace RoyalCommonalities.Items.Materials
             Info = PrefabInfo.WithTechType("laminatedglass", "Laminated Glass", "Enchanced glass with distinctive transparency from one of its sides").WithIcon(Plugin.Bundle.LoadAsset<Sprite>("LaminatedGlass2"));
             var laminatedglassPrefab = new CustomPrefab(Info);
 
-            // The model
-            var laminatedObj = new CloneTemplate(Info, TechType.EnameledGlass);
-            laminatedglassPrefab.SetGameObject(laminatedObj);
+            //laminatedglassPrefab.SetGameObject(laminatedObj);
 
             var recipe = new RecipeData(
                 new Ingredient(TechType.Glass, 2),
@@ -43,6 +42,8 @@ namespace RoyalCommonalities.Items.Materials
                 .WithFabricatorType(AdvancedCraftingStation.TreeType)
                 .WithStepsToFabricatorTab(CraftTreeHandler.rootRCPrecursorTab);
 
+            laminatedglassPrefab.SetGameObject(GetAssetBundlePrefab());
+
             //Unlocks at start ^-^
             //You don't have to put this here i think but i do it here.
             KnownTechHandler.UnlockOnStart(LaminatedGlass.Info.TechType);
@@ -50,6 +51,20 @@ namespace RoyalCommonalities.Items.Materials
             // register to the game
             laminatedglassPrefab.Register();
 
+        }
+        private static GameObject GetAssetBundlePrefab()
+        {
+            GameObject laminatedObj = Plugin.Bundle.LoadAsset<GameObject>("LaminatedGlassModel");
+
+            PrefabUtils.AddBasicComponents(laminatedObj, Info.ClassID, Info.TechType, LargeWorldEntity.CellLevel.Medium);
+
+            MaterialUtils.ApplySNShaders(laminatedObj);
+            laminatedObj.AddComponent<WorldForces>();
+            laminatedObj.AddComponent<Pickupable>();
+            laminatedObj.AddComponent<SkyApplier>();
+            PrefabUtils.AddWorldForces(laminatedObj, 1f, 1f, 1f, false);
+
+            return laminatedObj;
         }
     }
 }

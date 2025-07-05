@@ -25,14 +25,14 @@ namespace RoyalCommonalities.Items.Materials
 
         public static TechType Register()
         {
-            Info = PrefabInfo.WithTechType("modularhullpeace", "Modular Hull Piece", "Modular hull peace, made for the pourpose of building large vehicle hulls.").WithIcon(SpriteManager.Get(TechType.CyclopsHullBlueprint));
+            Info = PrefabInfo
+                // techtype | display name | description
+                .WithTechType("modularhullpeace", "Modular Hull Piece", "Modular hull peace, made for the pourpose of building large vehicle hulls.")
+                //icon
+                .WithIcon(Plugin.Bundle.LoadAsset<Sprite>("ModularHullPieceIco"))
+                //size in inventory
+                .WithSizeInInventory(new Vector2int(2, 2));
             var ModularHullPiecePrefab = new CustomPrefab(Info);
-
-
-
-            // The model of our coal will use the same one as Nickel's. (edited to Titanium)
-            var ModularHullPieceObj = new CloneTemplate(Info, TechType.CyclopsHullFragment);
-            ModularHullPiecePrefab.SetGameObject(ModularHullPieceObj);
 
             var recipe = new RecipeData(
                 new Ingredient(TechType.TitaniumIngot, 2),
@@ -43,7 +43,11 @@ namespace RoyalCommonalities.Items.Materials
 
             ModularHullPiecePrefab.SetRecipe(recipe)
                 .WithFabricatorType(AdvancedCraftingStation.TreeType)
-                .WithStepsToFabricatorTab(CraftTreeHandler.rootRCVehicleIngredientsTab);
+                .WithStepsToFabricatorTab(CraftTreeHandler.rootRCVehicleIngredientsTab)
+                .WithCraftingTime(8f)
+                ;
+
+            ModularHullPiecePrefab.SetGameObject(GetAssetBundlePrefab());
 
             //Unlocks at start ^-^
             //You don't have to put this here i think but i do it here.
@@ -52,6 +56,20 @@ namespace RoyalCommonalities.Items.Materials
             // register to the game
             ModularHullPiecePrefab.Register();
             return Info.TechType;
+        }
+        private static GameObject GetAssetBundlePrefab()
+        {
+            GameObject ModularObj = Plugin.Bundle.LoadAsset<GameObject>("ModularHullPieceModel");
+
+            PrefabUtils.AddBasicComponents(ModularObj, Info.ClassID, Info.TechType, LargeWorldEntity.CellLevel.Medium);
+
+            MaterialUtils.ApplySNShaders(ModularObj);
+            ModularObj.AddComponent<WorldForces>();
+            ModularObj.AddComponent<Pickupable>();
+            ModularObj.AddComponent<SkyApplier>();
+            PrefabUtils.AddWorldForces(ModularObj, 1f, 1f, 1f, false);
+
+            return ModularObj;
         }
     }
 }

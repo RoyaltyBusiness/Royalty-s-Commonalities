@@ -25,14 +25,15 @@ namespace RoyalCommonalities.Items.Materials
 
         public static TechType Register()
         {
-            Info = PrefabInfo.WithTechType("lightmodularhullpeace", "Light Modular Hull Piece", "Modular hull peace, made for the pourpose of building hulls for light vehicles.").WithIcon(SpriteManager.Get(TechType.CyclopsHullBlueprint));
+            Info = PrefabInfo
+                // techtype | display name | description
+                .WithTechType("lightmodularhullpeace", "Light Modular Hull Piece", "Modular hull peace, made for the pourpose of building hulls for light vehicles.")
+                //icon
+                .WithIcon(Plugin.Bundle.LoadAsset<Sprite>("LightModularHullPieceIco"))
+                //size in inventory
+                .WithSizeInInventory(new Vector2int(2, 2));
+
             var LightModularHullPiecePrefab = new CustomPrefab(Info);
-
-
-
-            // The model of our coal will use the same one as Nickel's. (edited to Titanium)
-            var LightModularHullPieceObj = new CloneTemplate(Info, TechType.CyclopsHullFragment);
-            LightModularHullPiecePrefab.SetGameObject(LightModularHullPieceObj);
 
             var recipe = new RecipeData(
                 new Ingredient(TechType.TitaniumIngot, 1),
@@ -42,15 +43,33 @@ namespace RoyalCommonalities.Items.Materials
 
             LightModularHullPiecePrefab.SetRecipe(recipe)
                 .WithFabricatorType(AdvancedCraftingStation.TreeType)
-                .WithStepsToFabricatorTab(CraftTreeHandler.rootRCVehicleIngredientsTab);
+                .WithStepsToFabricatorTab(CraftTreeHandler.rootRCVehicleIngredientsTab)
+                .WithCraftingTime(7f)
+                ;
 
             //Unlocks at start ^-^
             //You don't have to put this here i think but i do it here.
             KnownTechHandler.UnlockOnStart(LightModularHullPiece.Info.TechType);
 
+            LightModularHullPiecePrefab.SetGameObject(GetAssetBundlePrefab());
+
             // register to the game
             LightModularHullPiecePrefab.Register();
             return Info.TechType;
+        }
+        private static GameObject GetAssetBundlePrefab()
+        {
+            GameObject LightModularObj = Plugin.Bundle.LoadAsset<GameObject>("LightModularHullPieceModel");
+
+            PrefabUtils.AddBasicComponents(LightModularObj, Info.ClassID, Info.TechType, LargeWorldEntity.CellLevel.Medium);
+
+            MaterialUtils.ApplySNShaders(LightModularObj);
+            LightModularObj.AddComponent<WorldForces>();
+            LightModularObj.AddComponent<Pickupable>();
+            LightModularObj.AddComponent<SkyApplier>();
+            PrefabUtils.AddWorldForces(LightModularObj, 1f, 1f, 1f, false);
+
+            return LightModularObj;
         }
     }
 }

@@ -92,7 +92,7 @@ namespace RoyalCommonalities.WorldObjects.Materials.Deposits.Precursor
 
             i haven't tested if you can do more than 5 chunks with this code
             */
-            var prefab = Plugin.Bundle.LoadAsset<GameObject>("DrillableIonitePr");
+            var prefab = Plugin.Bundle.LoadAsset<GameObject>("DrillableIonite2");
 
             var pId = prefab.EnsureComponent<PrefabIdentifier>();
             pId.ClassId = Info.ClassID;
@@ -117,8 +117,6 @@ namespace RoyalCommonalities.WorldObjects.Materials.Deposits.Precursor
             drillable.breakAllFX = fx;
             //this u set what you want the drillable to give. for ionite is ionite. max resources to spawn is how much it gives from 1 to ur number. in case of ionite it gives 1 or 2 ionite.
             //i don't know what chance does.
-            //BUT i just noticed while writing the code it looks very simular in structure to recipies. so you may be able to acualy have fiew things it gives you.
-            //if more than one thing is here in drillable platinum then it means it works. if not then either i haven't toyed with it yet or it doesn't work. its June 7th 2025 7.10pm as i write this.
             drillable.resources = new[] { new Drillable.ResourceType { chance = 1f, techType = Ionite.Info.TechType } };
             drillable.maxResourcesToSpawn = 2;
             //here is why 0 in name might be important. donno if its acualy what happens i don't acualy code. this drillable code i got from Metious

@@ -30,10 +30,6 @@ namespace RoyalCommonalities.Items.Materials
 
 
 
-        // The model of our coal will use the same one as Nickel's. (edited to Titanium)
-        var chromeingotObj = new CloneTemplate(Info, TechType.TitaniumIngot);
-            chromeingotPrefab.SetGameObject(chromeingotObj);
-
             var recipe = new RecipeData(
                 new Ingredient(TechType.TitaniumIngot),
                 new Ingredient(TechType.Copper, 2),
@@ -45,6 +41,9 @@ namespace RoyalCommonalities.Items.Materials
                 .WithFabricatorType(AdvancedCraftingStation.TreeType)
                 .WithStepsToFabricatorTab(CraftTreeHandler.rootRCPrecursorTab);
 
+
+            chromeingotPrefab.SetGameObject(GetAssetBundlePrefab());
+
             //Unlocks at start ^-^
             //You don't have to put this here i think but i do it here.
             KnownTechHandler.UnlockOnStart(ChromaticIngot.Info.TechType);
@@ -52,6 +51,21 @@ namespace RoyalCommonalities.Items.Materials
             // register to the game
             chromeingotPrefab.Register();
             return Info.TechType;
+        }
+
+        private static GameObject GetAssetBundlePrefab()
+        {
+            GameObject chomaticObj = Plugin.Bundle.LoadAsset<GameObject>("ChromaticIngotModel");
+
+            PrefabUtils.AddBasicComponents(chomaticObj, Info.ClassID, Info.TechType, LargeWorldEntity.CellLevel.Medium);
+
+            MaterialUtils.ApplySNShaders(chomaticObj);
+            chomaticObj.AddComponent<WorldForces>();
+            chomaticObj.AddComponent<Pickupable>();
+            chomaticObj.AddComponent<SkyApplier>();
+            PrefabUtils.AddWorldForces(chomaticObj, 1f, 1f, 1f, false);
+
+            return chomaticObj;
         }
     }
 }

@@ -17,7 +17,8 @@ using Nautilus.Crafting;
 using Nautilus.Handlers;
 using RoyalCommonalities;
 using RoyalCommonalities.Items.Materials.Natural;
-using RoyalCommonalities.WorldObjects.Precursor.Materials.Deposit;
+using RoyalCommonalities.WorldObjects.Materials.Deposits.Precursor;
+using RoyalCommonalities.WorldObjects.Materials.Deposits;
 using System.Runtime.CompilerServices;
 
 namespace RoyalCommonalities.Buildables.Crafting

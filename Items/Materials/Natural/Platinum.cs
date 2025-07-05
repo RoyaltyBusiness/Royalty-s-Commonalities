@@ -25,20 +25,28 @@ namespace RoyalCommonalities.Items.Materials.Natural
 
         public static void Register()
         {
-            Info = PrefabInfo.WithTechType("royalplatinum", "Platinum", "Rare material").WithIcon(SpriteManager.Get(TechType.Magnesium));
+            Info = PrefabInfo.WithTechType("royalplatinum", "Platinum", "Stable and dense high-grade noble metal").WithIcon((Plugin.Bundle.LoadAsset<Sprite>("PlatinumIco")));
             var PlatinumPrefab = new CustomPrefab(Info);
 
-            // The model
-            var PlatinumObj = new CloneTemplate(Info, TechType.Magnesium);
-            PlatinumPrefab.SetGameObject(PlatinumObj);
-
-            //Unlocks at start ^-^
-            //You don't have to put this here i think but i do it here.
-            KnownTechHandler.UnlockOnStart(Platinum.Info.TechType);
+            PlatinumPrefab.SetGameObject(GetAssetBundlePrefab());
 
             // register to the game
             PlatinumPrefab.Register();
 
+        }
+        private static GameObject GetAssetBundlePrefab()
+        {
+            GameObject PlatObj = Plugin.Bundle.LoadAsset<GameObject>("Platinum");
+
+            PrefabUtils.AddBasicComponents(PlatObj, Info.ClassID, Info.TechType, LargeWorldEntity.CellLevel.Medium);
+
+            MaterialUtils.ApplySNShaders(PlatObj);
+            PlatObj.AddComponent<WorldForces>();
+            PlatObj.AddComponent<Pickupable>();
+            PlatObj.AddComponent<SkyApplier>();
+            PrefabUtils.AddWorldForces(PlatObj, 1f, 1f, 1f, false);
+
+            return PlatObj;
         }
     }
 }
