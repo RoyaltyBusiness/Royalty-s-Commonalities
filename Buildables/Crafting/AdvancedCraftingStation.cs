@@ -65,13 +65,7 @@ namespace RoyalCommonalities.Buildables.Crafting
 
             prefab.SetGameObject(RoyalfabTemplate);
 
-            var recipe = new RecipeData(
-                new Ingredient(TechType.PrecursorIonCrystal, 1),
-                new Ingredient(TechType.Quartz, 4)
-                )
-            { craftAmount = 4 };
-
-            Nautilus.Handlers.CraftDataHandler.SetRecipeData(Info.TechType, recipe);
+            CraftDataHandler.SetRecipeData(Info.TechType, GetBlueprintRecipe());
             
             prefab.Register();
             
@@ -112,10 +106,10 @@ namespace RoyalCommonalities.Buildables.Crafting
             //if you want you culd technicly add another factor and change the vector3 to have it in some stuff but doing it proportionaly with one factor will look better.
             gObj.transform.localScale = new Vector3(scale.x * factor, scale.y * factor, scale.z * factor);
         }
-        /*
-        private static Nautilus.Crafting.RecipeData GetBlueprintRecipe()
+        
+        private static RecipeData GetBlueprintRecipe()
         {
-            return new Nautilus.Crafting.RecipeData
+            return new RecipeData
             {
                 //idonno what craft amount wuld change in case of a buildable but just in case don't play with it.
                 craftAmount = 1,
@@ -128,7 +122,7 @@ namespace RoyalCommonalities.Buildables.Crafting
                 }
             };
         }
-        */
+        
         
     }
 
