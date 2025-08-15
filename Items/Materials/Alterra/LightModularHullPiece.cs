@@ -15,6 +15,7 @@ using Nautilus.Utility;
 using Nautilus.Extensions;
 using UnityEngine;
 using RoyalCommonalities.Buildables.Crafting;
+using RoyalCommonalities.Items.Materials.Crafted;
 
 namespace RoyalCommonalities.Items.Materials
 {
@@ -36,9 +37,9 @@ namespace RoyalCommonalities.Items.Materials
             var LightModularHullPiecePrefab = new CustomPrefab(Info);
 
             var recipe = new RecipeData(
-                new Ingredient(TechType.TitaniumIngot, 1),
-                new Ingredient(TechType.Lithium, 3),
-                new Ingredient(TechType.CopperWire, 2)
+                new Ingredient(AluminiumIngot.Info.TechType, 1),
+                new Ingredient(Aluminium.Info.TechType, 3),
+                new Ingredient(TechType.Lithium, 2)
                 );
 
             LightModularHullPiecePrefab.SetRecipe(recipe)

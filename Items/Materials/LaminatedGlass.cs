@@ -61,7 +61,7 @@ namespace RoyalCommonalities.Items.Materials
             MaterialUtils.ApplySNShaders(laminatedObj);
             laminatedObj.AddComponent<WorldForces>();
             laminatedObj.AddComponent<Pickupable>();
-            laminatedObj.AddComponent<SkyApplier>();
+            //laminatedObj.AddComponent<SkyApplier>();
             PrefabUtils.AddWorldForces(laminatedObj, 1f, 1f, 1f, false);
 
             return laminatedObj;

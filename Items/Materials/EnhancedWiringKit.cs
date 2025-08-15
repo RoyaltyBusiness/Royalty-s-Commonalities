@@ -64,7 +64,7 @@ namespace RoyalCommonalities.Items.Materials
             MaterialUtils.ApplySNShaders(EnhancedObj);
             EnhancedObj.AddComponent<WorldForces>();
             EnhancedObj.AddComponent<Pickupable>();
-            EnhancedObj.AddComponent<SkyApplier>();
+            //EnhancedObj.AddComponent<SkyApplier>();
             PrefabUtils.AddWorldForces(EnhancedObj, 1f, 1f, 1f, false);
 
             return EnhancedObj;

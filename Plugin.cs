@@ -5,6 +5,7 @@ using Nautilus.Utility;
 using RoyalCommonalities;
 using RoyalCommonalities.Buildables.Crafting;
 using RoyalCommonalities.Items.Materials;
+using RoyalCommonalities.Items.Materials.Crafted;
 using RoyalCommonalities.Items.Materials.Natural;
 using RoyalCommonalities.WorldObjects.Materials.Deposits;
 using RoyalCommonalities.WorldObjects.Materials.Deposits.Precursor;
@@ -53,6 +54,9 @@ namespace RoyalCommonalities
             CraftTreeHandler.AddFabricatorMenus();
 
             Ionite.Register();
+
+            Aluminium.Register();
+            AluminiumIngot.Register();
 
             ChromaticIngot.Register();
             EnhancedWiringKit.Register();

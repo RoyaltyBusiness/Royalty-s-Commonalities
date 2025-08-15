@@ -54,6 +54,8 @@ namespace RoyalCommonalities.Items.Materials
             //this gets you custom model
             ionitePrefab.SetGameObject(GetAssetBundlePrefab());
 
+
+
             // register to the game
             ionitePrefab.Register();
 
@@ -75,5 +77,6 @@ namespace RoyalCommonalities.Items.Materials
 
             return IonObj;
         }
+
     }
 }

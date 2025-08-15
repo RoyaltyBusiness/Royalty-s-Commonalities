@@ -18,6 +18,7 @@ namespace RoyalCommonalities
         //roots, no idea what they do but they make it work so they are important.
         internal static readonly string[] rootRCPrecursorTab = { "RCPR" };
         internal static readonly string[] rootRCVehicleIngredientsTab = { "RCVI" };
+        internal static readonly string[] rootRCConvertTab = { "RCCT" };
 
         internal static void AddFabricatorMenus()
         {
@@ -29,6 +30,7 @@ namespace RoyalCommonalities
             //Adds tab ^-^
             Nautilus.Handlers.CraftTreeHandler.AddTabNode(AdvancedCraftingStation.TreeType, rootRCPrecursorTab[0], "Precursor Materials", RACS_Precursor_Icon);
             Nautilus.Handlers.CraftTreeHandler.AddTabNode(AdvancedCraftingStation.TreeType, rootRCVehicleIngredientsTab[0], "Vehicle Materials", RACS_Electronics_Icon);
+            Nautilus.Handlers.CraftTreeHandler.AddTabNode(AdvancedCraftingStation.TreeType, rootRCConvertTab[0], "Conversion Materials", SpriteManager.Get(TechType.UraniniteCrystal));
 
             //this is how you do it for fabricator:
             //Nautilus.Handlers.CraftTreeHandler.AddTabNode(CraftTree.Type.Fabricator, rootRCVehicleIngredientsTab[0], "Vehicle Materials", RCVI_Icon);

@@ -43,6 +43,24 @@ namespace RoyalCommonalities.WorldObjects.Materials.Deposits.Precursor
             Info = PrefabInfo.WithTechType("drillableionite", "Drillable Ionite", "Wonder how this will work").WithIcon(Plugin.Bundle.LoadAsset<Sprite>("Ionite"));
             var DrillableIonitePrefab = new CustomPrefab(Info);
 
+            PDAHandler.AddEncyclopediaEntry(
+                key: "Ionite",
+                path: "DownloadedData/Precursor/Scan",
+                title: "Ionite",
+                desc: "This green mineral substance has no entry on the periodic table, but resembles the signature of ion cube. It has and an unprecedented ability to transmit or store large amounts of ionic energy within it.\nBy the way it is found it apears that this substance over time crystalises and pushes itself out of any alloy it is in. if not maintained correcly.\nIts apearance in the structures tho suggest that this phenomena has been deemed as 'neseseey evil'.\n\n- It is able to efficiently and instantly transport large amount of ion energy\n- Slowly Re-crystalises over time if not maintained.\n- Likely used for out of sight energy transportation.\n\nAssessment: Potencialy valuable building material."
+,
+
+                image: null,
+                popupImage: null,
+                unlockSound: PDAHandler.UnlockBasic
+            );
+            PDAHandler.AddCustomScannerEntry(
+                key: DrillableIonite.Info.TechType,
+                scanTime: 6f,
+                destroyAfterScan: false,
+                encyclopediaKey: "Ionite"
+            );
+
 
             //you call that lil IEnumerator below here
             DrillableIonitePrefab.SetGameObject(GetPrefabAsync);
